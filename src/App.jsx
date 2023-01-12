@@ -1,16 +1,19 @@
-import { Header } from './components/Header/Header';
-import { Calendar } from './components/Calendar/Calendar';
-import { TaskList } from './components/TaskList/TaskList';
-import { NewTaskButton } from './components/NewTask/NewTaskButton';
+import { Home } from './components/Tasks/Home';
+import { SignIn } from './components/SignIn/SignIn';
+import { Routes, Route } from 'react-router';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebase';
+import { TaskEditor } from './components/TaskEditor/TaskEditor';
 
 const App = () => {
+  const [user] = useAuthState(auth);
+
   return (
-    <div className='container mx-auto block h-screen'>
-      <Header />
-      <Calendar />
-      <TaskList tasksRemain={4} />
-      <NewTaskButton />
-    </div>
+    <Routes>
+      <Route path='/' element={user ? <Home /> : <SignIn />} />
+      <Route path='/editor/*' element={user ? <TaskEditor /> : <SignIn />} />
+    </Routes>
   );
 };
 

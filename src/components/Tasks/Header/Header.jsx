@@ -1,11 +1,13 @@
 import { Bell } from './Bell';
 import { Burger } from './Burger';
+import { SignOut } from './../../SignIn/SignOut';
 
 export const Header = () => {
   return (
     <div className='my-5 mx-5 flex justify-between'>
       <h1 className='text-4xl font-bold'>Tassker</h1>
-      <div className='flex w-28 items-center justify-between'>
+      <div className='flex items-center justify-between gap-4'>
+        <SignOut />
         <Bell />
         <Burger />
       </div>
