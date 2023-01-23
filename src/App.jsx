@@ -1,18 +1,25 @@
-import { Home } from './components/Tasks/Home';
+import { Home } from './components/Home/Home';
 import { SignIn } from './components/SignIn/SignIn';
+import { TaskEditor } from './components/TaskEditor/TaskEditor';
 import { Routes, Route } from 'react-router';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase';
-import { TaskEditor } from './components/TaskEditor/TaskEditor';
 
 const App = () => {
   const [user] = useAuthState(auth);
 
   return (
     <Routes>
-      <Route path='/' element={user ? <Home /> : <SignIn />} />
-      <Route path='/editor/*' element={user ? <TaskEditor /> : <SignIn />} />
+      <Route
+        path='/'
+        element={user ? <Home userId={user.auth.currentUser.uid} /> : <SignIn />}
+      />
+      <Route
+        path='/editor/*'
+        element={
+          user ? <TaskEditor userId={user.auth.currentUser.uid} /> : <SignIn />
+        }
+      />
     </Routes>
   );
 };
