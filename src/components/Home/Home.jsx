@@ -35,7 +35,7 @@ export const Home = (props) => {
   return (
     <div className='container mx-auto block h-screen max-w-5xl overflow-x-hidden'>
       <Header />
-      <Calendar changePickedDay={changePickedDay} pickedMonth={pickedMonth} pickedDay={pickedDay} />
+      <Calendar todos={todos} changePickedDay={changePickedDay} pickedMonth={pickedMonth} pickedDay={pickedDay} />
       <TaskList
         todos={todos}
         toggleComplete={toggleComplete}

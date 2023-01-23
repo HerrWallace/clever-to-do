@@ -12,6 +12,7 @@ export const Calendar = (props) => {
       calendarDaysArray.push(
         <CalendarDay
           key={i}
+          todos={props.todos}
           day={date.getDay()}
           date={date.getDate()}
           month={date.getMonth()}

@@ -6,7 +6,7 @@ import { db } from '../../firebase';
 
 export const TaskEditor = (props) => {
   const location = useLocation();
-  const { todo } = location.state;
+  const todo = location.state;
 
   const submitClick = async ({ title, text, completed, date, time }) => {
     if (title !== '') {

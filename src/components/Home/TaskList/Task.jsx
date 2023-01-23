@@ -9,7 +9,7 @@ export const Task = (props) => {
         onClick={() => props.toggleComplete(props.todo)}
         defaultChecked={props.todo.completed}
       />
-      <Link className='h-full w-full' to='/editor' state={{todo: props.todo}}>
+      <Link className='h-full w-full' to='/editor' state={props.todo}>
         {props.todo.title}
       </Link>
     </div>
