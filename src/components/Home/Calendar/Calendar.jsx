@@ -31,8 +31,8 @@ export const Calendar = (props) => {
   });
 
   const handleScroll = (e) => {
-    if(e.target.scrollLeft === 2590) {
-      setShowDays(showDays + 31);
+    if(e.target.scrollLeft >= 2580) {
+      setShowDays(62);
     }
   };
 

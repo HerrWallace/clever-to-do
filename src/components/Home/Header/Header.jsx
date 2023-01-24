@@ -1,6 +1,6 @@
 import { Bell } from './Bell';
 import { Burger } from './Burger';
-import { SignOut } from './../../SignIn/SignOut';
+import { SignOut } from '../../SignOut/SignOut';
 
 export const Header = () => {
   return (
