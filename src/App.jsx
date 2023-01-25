@@ -7,12 +7,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase';
 import { RequireAuth } from './components/RequireAuth/RequireAuth';
 import { NotFound } from './components/NotFound/NotFound';
+import { Loader } from './components/Loader/Loader';
 
 const App = () => {
   const [, loading] = useAuthState(auth);
 
   if (loading) {
-    return <p>loading</p>;
+    return <Loader />;
   }
 
   return (
@@ -43,6 +44,7 @@ const App = () => {
           </RequireAuth>
         }
       ></Route>
+      <Route path='/loader' element={<Loader />}></Route>
     </Routes>
   );
 };

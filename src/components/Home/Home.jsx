@@ -11,7 +11,7 @@ export const Home = () => {
   const [pickedDay, setPickedDay] = useState(new Date().getDate());
   const [pickedMonth, setPickedMonth] = useState(new Date().getMonth());
   const [todos, setTodos] = useState([]);
-  
+
   const [user] = useAuthState(auth);
   const userId = user.auth.currentUser.uid;
 
