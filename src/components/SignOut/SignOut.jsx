@@ -1,7 +1,7 @@
-import { getAuth, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 export const SignOut = () => {
-  const auth = getAuth();
   return (
     <>
       <button

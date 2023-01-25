@@ -2,15 +2,19 @@ import { useLocation } from 'react-router';
 import { BackButton } from './BackButton/BackButton';
 import { EditTask } from './EditTask/EditTask';
 import { addDoc, collection, updateDoc, doc, deleteDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { auth, db } from '../../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-export const TaskEditor = (props) => {
+export const TaskEditor = () => {
   const location = useLocation();
   const todo = location.state;
 
+  const [user] = useAuthState(auth);
+  const userId = user.auth.currentUser.uid;
+
   const submitClick = async ({ title, text, completed, date, time }) => {
     if (title !== '') {
-      await addDoc(collection(db, props.userId), {
+      await addDoc(collection(db, userId), {
         title,
         text,
         completed,
@@ -21,7 +25,7 @@ export const TaskEditor = (props) => {
   };
 
   const editClick = async ({ title, text, date, time }) => {
-    await updateDoc(doc(db, props.userId, todo.id), {
+    await updateDoc(doc(db, userId, todo.id), {
       title,
       text,
       date,
@@ -30,7 +34,7 @@ export const TaskEditor = (props) => {
   };
 
   const deleteClick = async () => {
-    await deleteDoc(doc(db, props.userId, todo.id));
+    await deleteDoc(doc(db, userId, todo.id));
   };
 
   return (
@@ -38,7 +42,7 @@ export const TaskEditor = (props) => {
       <BackButton />
       <EditTask
         todo={todo}
-        userId={props.userId}
+        userId={userId}
         submitClick={submitClick}
         editClick={editClick}
         deleteClick={deleteClick}

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const TrashCan = (props) => {
   return (
-    <Link to={'/'}>
+    <Link to={'/home'}>
       <button className='cursor-pointer' onClick={props.deleteClick}>
         <svg
           width='30px'

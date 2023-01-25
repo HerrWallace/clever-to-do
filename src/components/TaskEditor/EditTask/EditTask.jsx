@@ -63,7 +63,7 @@ export const EditTask = (props) => {
 
       <AddTaskButton
         buttonText={isTodoExists ? 'Edit task' : 'Submit task'}
-        link={'/'}
+        link={'/home'}
         onClick={
           isTodoExists
             ? () => props.editClick(returnTaskInfo())
