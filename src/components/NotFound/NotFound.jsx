@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 export const NotFound = () => {
   return (
-    <div className='flex flex-col items-center w-full mt-10'>
-      <h3 className="font-bold ">404</h3>
+    <div className='mt-10 flex w-full flex-col items-center'>
+      <h3 className='mb-2 text-7xl font-bold'>404</h3>
       <p>Page not found</p>
-      <Link className='mt-5' to='/home'>Return <span className='text-orange-300 font-medium'>Home</span></Link>
+      <Link className='mt-6' to='/home'>
+        Return <span className='font-medium text-orange-300'>Home</span>
+      </Link>
     </div>
   );
 };

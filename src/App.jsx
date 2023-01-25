@@ -10,7 +10,7 @@ import { NotFound } from './components/NotFound/NotFound';
 import { Loader } from './components/Loader/Loader';
 
 const App = () => {
-  const [, loading] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   if (loading) {
     return <Loader />;
@@ -18,8 +18,8 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path='/signin' element={<SignIn />}></Route>
-      <Route path='/register' element={<Register />}></Route>
+      <Route path='/signin' element={<SignIn user={user} />}></Route>
+      <Route path='/register' element={<Register user={user} />}></Route>
       <Route
         path='/home'
         element={

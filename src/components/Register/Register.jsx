@@ -1,13 +1,22 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { Input } from './../SignIn/SignInComponents/Input';
 import { auth } from './../../firebase';
+import { toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export const Register = () => {
+export const Register = (props) => {
+  const location = useLocation();
+
+  if (props.user) {
+    return <Navigate to='/home' replace state={{ path: location.pathname }} />;
+  }
+
   const registerWithEmail = async (email, password) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
+      toast.error(error.message);
       console.log(error.message);
     }
   };

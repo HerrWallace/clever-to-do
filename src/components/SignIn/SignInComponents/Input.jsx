@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../firebase';
 
 export const Input = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const [user] = useAuthState(auth);
 
   return (
     <>
@@ -36,7 +40,7 @@ export const Input = (props) => {
         className='mt-8 w-full rounded-md border-2 bg-orange-400 p-1 font-medium text-white hover:bg-orange-400 hover:text-white'
         onClick={() => {
           props.handleClick(email, password);
-          navigate('/home');
+          user && navigate('/home');
         }}
       >
         Submit

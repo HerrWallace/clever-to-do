@@ -7,13 +7,13 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 import { Input } from './SignInComponents/Input';
 import { ButtonGoogle } from './SignInComponents/ButtonGoogle';
 import { auth } from '../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export const SignIn = () => {
-  const [user] = useAuthState(auth);
+export const SignIn = (props) => {
   const location = useLocation();
 
-  if (user) {
+  if (props.user) {
     return <Navigate to='/home' replace state={{ path: location.pathname }} />;
   }
 
@@ -26,6 +26,7 @@ export const SignIn = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
+      toast.error(error.message);
       console.log(error.message);
     }
   };
