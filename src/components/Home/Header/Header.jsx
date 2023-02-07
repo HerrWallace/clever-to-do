@@ -1,4 +1,4 @@
-import { Bell } from './Bell';
+import { BellSVG } from './BellSVG';
 import { Burger } from './Burger';
 import { SignOut } from '../../SignOut/SignOut';
 
@@ -8,7 +8,7 @@ export const Header = () => {
       <h1 className='text-4xl font-bold'>Tassker</h1>
       <div className='flex items-center justify-between gap-4'>
         <SignOut />
-        <Bell />
+        <BellSVG />
         <Burger />
       </div>
     </div>

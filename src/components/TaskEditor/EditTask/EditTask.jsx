@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AddTaskButton } from '../../Home/AddTaskButton/AddTaskButton';
-import { TrashCan } from './TrashCan';
+import { TrashCanSVG } from './TrashCanSVG';
 
 export const EditTask = (props) => {
   const isTodoExists = props.todo !== null;
@@ -57,7 +57,7 @@ export const EditTask = (props) => {
         </div>
 
         <div className='pr-5'>
-          <TrashCan deleteClick={props.deleteClick} />
+          <TrashCanSVG deleteClick={props.deleteClick} />
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import { Header } from './Header/Header';
 import { Calendar } from './Calendar/Calendar';
 import { TaskList } from './TaskList/TaskList';
 import { AddTaskButton } from './AddTaskButton/AddTaskButton';
+import { Loader } from '../Loader/Loader';
 import { useEffect, useState } from 'react';
 import { auth, db } from '../../firebase';
 import { query, collection, onSnapshot, doc, updateDoc } from 'firebase/firestore';
@@ -15,15 +16,20 @@ export const Home = () => {
   const [user] = useAuthState(auth);
   const userId = user.auth.currentUser.uid;
 
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     const q = query(collection(db, userId));
+
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let todosArr = [];
       querySnapshot.forEach((doc) => {
         todosArr.push({ ...doc.data(), id: doc.id });
       });
       setTodos(todosArr);
+      setLoaded(true);
     });
+
     return () => unsubscribe();
   }, []);
 
@@ -35,6 +41,10 @@ export const Home = () => {
     setPickedDay(day);
     setPickedMonth(month);
   };
+
+  if (!loaded) {
+    return <Loader />;
+  }
 
   return (
     <div className='container mx-auto block h-screen max-w-5xl overflow-x-hidden'>

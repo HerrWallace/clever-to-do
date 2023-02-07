@@ -1,4 +1,4 @@
-export const Bell = () => {
+export const BellSVG = () => {
   return (
     <a href='#' className='cursor-pointer'>
       <svg

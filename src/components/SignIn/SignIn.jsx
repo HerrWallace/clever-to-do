@@ -43,7 +43,8 @@ export const SignIn = (props) => {
         <ButtonGoogle signInWithGoogle={signInWithGoogle} />
 
         <div className='mt-20 text-lg text-zinc-500'>
-          Don't have an Account?{' '}
+          Don&apos;t have an Account?{' '}
+          
           <Link to='/register' className='font-medium hover:text-orange-300'>
             Register
           </Link>

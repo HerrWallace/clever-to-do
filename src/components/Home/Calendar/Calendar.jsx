@@ -2,36 +2,21 @@ import { CalendarDay } from './CalendarDay';
 import { useState } from 'react';
 
 export const Calendar = (props) => {
-  let date = new Date();
   const [showDays, setShowDays] = useState(31);
 
-  const createCalendarDays = () => {
-    const calendarDaysArray = [];
-
-    for (let i = 0; i <= showDays; i++) {
-      calendarDaysArray.push(
-        <CalendarDay
-          key={i}
-          todos={props.todos}
-          day={date.getDay()}
-          date={date.getDate()}
-          month={date.getMonth()}
-          changePickedDay={props.changePickedDay}
-          pickedDay={props.pickedDay}
-          pickedMonth={props.pickedMonth}
-        />
-      );
-      date.setDate(date.getDate() + 1);
-    }
-    return calendarDaysArray;
-  };
-
-  const calendarDays = createCalendarDays().map((day) => {
-    return day;
-  });
+  const calendarDays = Array.from({ length: showDays }, (v, index) => (
+    <CalendarDay
+      key={index}
+      todos={props.todos}
+      changePickedDay={props.changePickedDay}
+      pickedDay={props.pickedDay}
+      pickedMonth={props.pickedMonth}
+      dayIndex={index}
+    />
+  ));
 
   const handleScroll = (e) => {
-    if(e.target.scrollLeft >= 2580) {
+    if (e.target.scrollLeft >= 2580) {
       setShowDays(62);
     }
   };

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const TrashCan = (props) => {
+export const TrashCanSVG = (props) => {
   return (
     <Link to={'/home'}>
       <button className='cursor-pointer' onClick={props.deleteClick}>
